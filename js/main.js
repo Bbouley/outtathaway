@@ -15,7 +15,7 @@ $(document).on('ready', function() {
 
   var $currentPosition = $startingPosition;
 
-  var moveDistance = 10;
+  var moveDistance = 5;
 
   $(document).on('keydown', function(event){
     keyPressed = event.keyCode;
@@ -29,12 +29,12 @@ $(document).on('ready', function() {
 
 
   function moveBox(){
-    if (keyPressed === 37){
+    if (keyPressed === 37 && $currentPosition >= 137){
         var moveLeft = $currentPosition - moveDistance;
         $playerBox.offset({left: moveLeft});
         $currentPosition = $playerBox.offset().left;
         console.log($currentPosition);
-    } else if (keyPressed === 39){
+    } else if (keyPressed === 39 && $currentPosition <= 1263){
        var moveRight = $currentPosition + moveDistance;
         $playerBox.offset({left: moveRight});
         $currentPosition = $playerBox.offset().left;
