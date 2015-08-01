@@ -28,9 +28,13 @@ $(document).on('ready', function() {
 
   function moveBox(){
     if (keyPressed === 37){
-      $playerBox.animate({'left': '-=5px'},'fast');
+      $playerBox.animate({'left': '-=1px'},'1');
+      keyPressed = 0;
     } else if (keyPressed === 39){
-      $playerBox.animate({'right': '-=5px'}, 'fast');
+      $playerBox.animate({'right': '-=1px'}, '1');
+      keyPressed = 0;
+    } else {
+      console.log('test');
     }
   }
 
