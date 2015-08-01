@@ -15,7 +15,13 @@ $(document).on('ready', function() {
 
   var $currentPosition = $startingPosition;
 
-  var moveDistance = 5;
+  var $width = $gameWindow - $playerBox;
+
+  function checkWidth(){
+    return $currentPosition < 0 ? 0 : $currentPosition > $width ? $width : $currentPosition;
+  }
+
+  // var moveDistance = 15;
 
   $(document).on('keydown', function(event){
     keyPressed = event.keyCode;
@@ -27,23 +33,22 @@ $(document).on('ready', function() {
     keyPressed = 0;
   });
 
+  setInterval(moveBox, 20);
+
+  setInterval(newPosition, 5);
 
   function moveBox(){
-    if (keyPressed === 37 && $currentPosition >= 137){
-        var moveLeft = $currentPosition - moveDistance;
-        $playerBox.offset({left: moveLeft});
-        $currentPosition = $playerBox.offset().left;
-        console.log($currentPosition);
-    } else if (keyPressed === 39 && $currentPosition <= 1263){
-       var moveRight = $currentPosition + moveDistance;
-        $playerBox.offset({left: moveRight});
-        $currentPosition = $playerBox.offset().left;
+    if (keyPressed === 37 && $currentPosition >= 139){
+        $playerBox.animate({'left': '-=4px'}, 1);
+         console.log($currentPosition);
+    } else if (keyPressed === 39 && $currentPosition <= 1260){
+        $playerBox.animate({'left': '+=4px'}, 1);
         console.log($currentPosition);
     }
   };
 
   function newPosition(){
-    playerPosition = $playerBox.position();
+    $currentPosition = $playerBox.offset().left;
   }
 
 });
