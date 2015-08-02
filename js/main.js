@@ -49,6 +49,7 @@ $(document).on('ready', function() {
   }
 
   $playButton.on('click', function(){
+    collision($playerBox, $computerBox);
     setInterval(function(){
       if ($computerCurrentPosition < 550){
           $computerBox.animate({'top': '+=10px'}, 'fast');
@@ -60,6 +61,32 @@ $(document).on('ready', function() {
      }
     }, 500);
   });
+
+  function collision($playerBox, $computerBox){
+
+    setInterval(function(){
+
+    var playerX = $playerBox.offset().left;
+    var playerY = $playerBox.offset().top;
+    var playerHeight = $playerBox.outerHeight(true);
+    var playerWidth = $playerBox.outerWidth(true);
+    var playerBoundaryY = playerY + playerHeight;
+    var playerBoundaryX = playerX + playerWidth;
+
+    var computerX = $computerBox.offset().left;
+    var computerY = $computerBox.offset().top;
+    var computerHeight = $computerBox.outerHeight(true);
+    var computerWidth = $computerBox.outerWidth(true);
+    var computerBoundaryY = computerY + computerHeight;
+    var computerBoundaryX = computerX + computerWidth;
+
+    if (playerBoundaryY < computerY || playerY > computerBoundaryY || playerBoundaryX < computerX || playerX > computerBoundaryX ){
+      console.log('no crash')
+    } else {
+      console.log ('crash');
+    }
+  }, 500);
+}
 
 
 
