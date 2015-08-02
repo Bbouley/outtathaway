@@ -4,16 +4,26 @@
 .gameWindow{
   position: relative;
   border: black 2px solid;
-  margin-top: 100px;
+  margin-top: 50px;
   height: 500px;
   overflow: hidden;
 }
 
 .playerBox{
-  position: relative;
+  position: absolute;
   height:40px;
   width:40px;
-  background: red;
+  background: blue;
   margin:0 auto;
   margin-top: 400px;
+  border: solid 1px black;
+}
+
+.computerBox{
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  background: red;
+  border: solid 1px black;
+  margin-left: 300px;
 }

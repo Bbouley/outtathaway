@@ -7,26 +7,25 @@ $(document).on('ready', function() {
 
   var $gameWindow = $('.gameWindow');
   var $playerBox = $('.playerBox');
+  var $computerBox = $('.computerBox');
+  var $playButton = $('.play');
 
   var keyPressed = 0;
+
+  var $computerStartPosition = $computerBox.offset().top;
+  console.log($computerStartPosition);
 
   var $startingPosition = $playerBox.offset().left;
   console.log($startingPosition);
 
-  var $currentPosition = $startingPosition;
+  var $playerCurrentPosition = $startingPosition;
 
-  var $width = $gameWindow - $playerBox;
-
-  function checkWidth(){
-    return $currentPosition < 0 ? 0 : $currentPosition > $width ? $width : $currentPosition;
-  }
-
-  // var moveDistance = 15;
+  var $computerCurrentPosition = $computerStartPosition;
 
   $(document).on('keydown', function(event){
     keyPressed = event.keyCode;
-    console.log(keyPressed);
     moveBox();
+
   });
 
   $(document).on('keyup', function(event){
@@ -38,17 +37,30 @@ $(document).on('ready', function() {
   setInterval(newPosition, 5);
 
   function moveBox(){
-    if (keyPressed === 37 && $currentPosition >= 139){
-        $playerBox.animate({'left': '-=4px'}, 1);
-         console.log($currentPosition);
-    } else if (keyPressed === 39 && $currentPosition <= 1260){
-        $playerBox.animate({'left': '+=4px'}, 1);
-        console.log($currentPosition);
+    if (keyPressed === 37 && $playerCurrentPosition >= 139){
+        $playerBox.animate({'left': '-=8px'}, 1);
+    } else if (keyPressed === 39 && $playerCurrentPosition <= 1260){
+        $playerBox.animate({'left': '+=8px'}, 1);
     }
-  };
+  }
 
   function newPosition(){
-    $currentPosition = $playerBox.offset().left;
+    $playerCurrentPosition = $playerBox.offset().left;
   }
+
+  $playButton.on('click', function(){
+    setInterval(function(){
+      if ($computerCurrentPosition < 550){
+          $computerBox.animate({'top': '+=10px'}, 'fast');
+          console.log('test');
+          $computerCurrentPosition = $computerBox.offset().top;
+          console.log($computerCurrentPosition);
+      } else {
+      $computerBox.stop();
+     }
+    }, 500);
+  });
+
+
 
 });
